@@ -34,7 +34,11 @@ export default function DocumentsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['documents', search, statusFilter],
     queryFn: () => getDocuments({ search, status: statusFilter, limit: 50 }),
-    refetchInterval: 5000,
+    refetchInterval: (query) => {
+      const docs = query.state.data?.data;
+      const hasActive = docs?.some((d: { status: string }) => d.status === 'queued' || d.status === 'processing');
+      return hasActive ? 5000 : false;
+    },
   });
 
   const deleteMutation = useMutation({

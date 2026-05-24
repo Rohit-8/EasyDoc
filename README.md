@@ -223,4 +223,4 @@ See [`backend/.env.example`](backend/.env.example) for the complete reference. K
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
