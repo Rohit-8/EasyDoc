@@ -58,67 +58,13 @@ AI-powered RAG system for document analysis, summarization, and citation-aware r
 | Security | Helmet, HPP, rate limiting, ClamAV (optional) |
 | Observability | Winston, Prometheus (prom-client), morgan |
 
-## Project Structure
+## Screenshots
 
-```
-EasyDoc/
-├── backend/
-│   ├── prisma/schema.prisma          # 6 models: Document, Chunk, Analysis, QA, Audit, Setting
-│   └── src/
-│       ├── app.ts                    # Express app with middleware pipeline
-│       ├── index.ts                  # Server startup, provider detection, worker init
-│       ├── config/
-│       │   ├── database.ts           # Prisma singleton
-│       │   ├── env.ts                # Zod-validated environment
-│       │   ├── redis.ts              # Optional Redis connection
-│       │   └── swagger.ts            # OpenAPI 3.0 spec
-│       ├── middleware/
-│       │   ├── correlationId.ts      # X-Correlation-ID header
-│       │   ├── errorHandler.ts       # Global error handler
-│       │   ├── rateLimiter.ts        # Upload/query/read rate limiters
-│       │   └── validateRequest.ts    # Zod request validation
-│       ├── observability/
-│       │   ├── audit.ts              # Audit trail logging
-│       │   ├── logger.ts             # Winston JSON logger
-│       │   └── metrics.ts            # Prometheus counters/histograms
-│       ├── queues/
-│       │   └── documentQueue.ts      # BullMQ queue definition
-│       ├── routes/
-│       │   ├── analysis.ts           # POST ask, POST summarize, GET qa-history
-│       │   ├── documents.ts          # POST upload, GET list, GET detail, DELETE
-│       │   ├── health.ts             # Liveness + readiness probes
-│       │   ├── jobs.ts               # GET job status (BullMQ)
-│       │   └── settings.ts           # Provider list, model assignments
-│       ├── services/
-│       │   ├── analysis/             # Classification, summarization, entity extraction, Q&A
-│       │   ├── cache/                # Redis cache-aside (query, embedding, metadata)
-│       │   ├── chunking/             # Token-based text splitter
-│       │   ├── embedding/            # Multi-provider embedding generation
-│       │   ├── parsing/              # PDF, DOCX, XLSX, TXT parsers
-│       │   ├── providers/registry.ts # Multi-provider LLM registry
-│       │   ├── retrieval/            # pgvector cosine similarity search
-│       │   ├── security/             # Magic bytes, ZIP bomb, ClamAV, sanitization
-│       │   └── upload/               # Document processing pipeline
-│       ├── utils/
-│       │   ├── AppError.ts           # Custom error class
-│       │   ├── circuitBreaker.ts     # Opossum wrapper
-│       │   └── hash.ts              # SHA-256 file hashing
-│       └── workers/
-│           └── documentWorker.ts     # BullMQ consumer
-├── frontend/
-│   └── src/
-│       ├── App.tsx                   # Router with 5 routes
-│       ├── main.tsx                  # React entry point
-│       ├── index.css                 # Tailwind + premium dark theme utilities
-│       ├── components/
-│       │   ├── layout/Layout.tsx     # Sidebar navigation
-│       │   └── ui/                   # StatusBadge, Skeleton, FileIcon, EmptyState
-│       ├── hooks/useSSE.ts           # Server-Sent Events streaming hook
-│       ├── pages/                    # Documents, Upload, Detail, QAChat, Settings
-│       └── services/api.ts           # Axios API client
-├── docs/                             # Architecture & design documentation
-└── .gitignore
-```
+### Document Analysis - Summary, Classification & Ask Questions
+![Document Upload & Analysis](public/document-upload.png)
+
+### Entity Extraction, Tags & Version History
+![Classifications and Tags](public/classifications-and-tags.png)
 
 ## Quick Start
 
