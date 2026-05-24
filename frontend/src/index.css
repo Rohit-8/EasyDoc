@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-4 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-hover;
+  }
+
+  ::selection {
+    @apply bg-accent-muted text-accent;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface-1/80 backdrop-blur-xl border border-border-subtle;
+  }
+
+  .input-base {
+    @apply w-full bg-surface-2 border border-border rounded px-3 py-2
+           text-sm text-text-primary placeholder:text-text-tertiary
+           focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20
+           transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+           bg-accent text-text-inverse font-medium text-sm rounded
+           hover:bg-accent-hover active:scale-[0.98]
+           transition-all duration-150;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2
+           bg-surface-3 text-text-primary font-medium text-sm rounded
+           border border-border hover:bg-surface-4 hover:border-border-hover
+           active:scale-[0.98] transition-all duration-150;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1.5
+           text-text-secondary text-sm rounded
+           hover:bg-surface-3 hover:text-text-primary
+           transition-all duration-150;
+  }
+
+  .card {
+    @apply bg-surface-1 border border-border rounded-lg;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 text-2xs font-medium rounded-full;
+  }
+}

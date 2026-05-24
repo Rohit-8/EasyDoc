@@ -1,0 +1,118 @@
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+model Document {
+  id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fileName             String           @map("file_name")
+  filePath             String           @map("file_path")
+  mimeType             String           @map("mime_type")
+  fileSize             BigInt           @map("file_size")
+  fileHash             String           @map("file_hash")
+  pageCount            Int?             @map("page_count")
+  status               String           @default("queued")
+  classification       String?
+  errorMessage         String?          @map("error_message")
+  version              Int              @default(1)
+  originalDocumentId   String?          @map("original_document_id") @db.Uuid
+  processingDurationMs Int?             @map("processing_duration_ms")
+  modelUsed            String?          @map("model_used")
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt            DateTime         @updatedAt @map("updated_at") @db.Timestamptz
+
+  originalDocument     Document?        @relation("DocumentVersions", fields: [originalDocumentId], references: [id])
+  versions             Document[]       @relation("DocumentVersions")
+  chunks               DocumentChunk[]
+  analyses             AnalysisResult[]
+  qaHistory            QaHistory[]
+
+  @@index([fileHash])
+  @@index([status])
+  @@index([classification])
+  @@index([originalDocumentId])
+  @@map("documents")
+}
+
+model DocumentChunk {
+  id          String                         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  documentId  String                         @map("document_id") @db.Uuid
+  chunkIndex  Int                            @map("chunk_index")
+  content     String
+  embedding   Unsupported("vector(768)")
+  pageNumber  Int?                           @map("page_number")
+  section     String?
+  tokenCount  Int?                           @map("token_count")
+  metadata    Json                           @default("{}")
+  createdAt   DateTime                       @default(now()) @map("created_at") @db.Timestamptz
+
+  document    Document                       @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@index([documentId, chunkIndex])
+  @@map("document_chunks")
+}
+
+model AnalysisResult {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  documentId  String   @map("document_id") @db.Uuid
+  type        String
+  content     Json
+  modelUsed   String?  @map("model_used")
+  tokensUsed  Int?     @map("tokens_used")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, type])
+  @@map("analysis_results")
+}
+
+model QaHistory {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  documentId    String   @map("document_id") @db.Uuid
+  question      String
+  answer        String
+  citations     Json
+  modelUsed     String?  @map("model_used")
+  tokensUsed    Int?     @map("tokens_used")
+  cached        Boolean  @default(false)
+  correlationId String?  @map("correlation_id")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  document      Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@map("qa_history")
+}
+
+model AuditLog {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  event         String
+  entityType    String   @map("entity_type")
+  entityId      String?  @map("entity_id") @db.Uuid
+  actorIp       String?  @map("actor_ip")
+  correlationId String?  @map("correlation_id")
+  details       Json     @default("{}")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([event])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@index([correlationId])
+  @@map("audit_logs")
+}
+
+model Setting {
+  id    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  key   String @unique
+  value String
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@map("settings")
+}
