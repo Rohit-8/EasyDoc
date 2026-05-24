@@ -54,23 +54,23 @@ export default function DocumentsPage() {
   const statuses = ['', 'queued', 'processing', 'ready', 'error'];
 
   return (
-    <div className="p-6 max-w-[1200px] mx-auto animate-fade-in">
+    <div className="p-4 sm:p-6 max-w-[1200px] mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-xl font-semibold tracking-tight">Documents</h1>
           <p className="text-sm text-text-tertiary mt-0.5">
             {data?.pagination?.total ?? '—'} documents
           </p>
         </div>
-        <Link to="/upload" className="btn-primary text-[13px]">
+        <Link to="/upload" className="btn-primary text-[13px] self-start sm:self-auto">
           Upload Document
         </Link>
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="relative flex-1 max-w-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+        <div className="relative w-full sm:flex-1 sm:max-w-xs">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-tertiary" />
           <input
             type="text"
@@ -80,12 +80,12 @@ export default function DocumentsPage() {
             className="input-base pl-9"
           />
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 overflow-x-auto pb-1 -mb-1">
           {statuses.map((s) => (
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`btn-ghost text-[13px] ${statusFilter === s ? 'bg-surface-3 text-text-primary' : ''}`}
+              className={`btn-ghost text-[13px] whitespace-nowrap ${statusFilter === s ? 'bg-surface-3 text-text-primary' : ''}`}
             >
               {s || 'All'}
             </button>
@@ -138,7 +138,7 @@ export default function DocumentsPage() {
               </div>
 
               <div className="flex items-center justify-between">
-                <div className="flex gap-1.5">
+                <div className="flex flex-wrap gap-1.5">
                   {doc.classification ? (
                     <span className="badge bg-accent-subtle text-accent">
                       {String(doc.classification)}
@@ -158,7 +158,7 @@ export default function DocumentsPage() {
                       deleteMutation.mutate(doc.id as string);
                     }
                   }}
-                  className="opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-status-error/10 hover:text-status-error transition-all"
+                  className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-1 rounded hover:bg-status-error/10 hover:text-status-error transition-all"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>

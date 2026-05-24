@@ -107,7 +107,7 @@ export default function QAChatPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex-shrink-0 h-14 border-b border-border flex items-center px-5 gap-3">
+      <div className="flex-shrink-0 h-14 border-b border-border flex items-center px-4 sm:px-5 gap-3">
         <Link to={`/documents/${id}`} className="btn-ghost p-1.5">
           <ArrowLeft className="w-4 h-4" />
         </Link>
@@ -118,7 +118,7 @@ export default function QAChatPage() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-6 space-y-6">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center">
             <div className="w-14 h-14 rounded-2xl bg-accent-subtle border border-accent/10 flex items-center justify-center mb-4">
@@ -128,7 +128,7 @@ export default function QAChatPage() {
             <p className="text-sm text-text-tertiary max-w-[320px]">
               Responses are grounded in the document content with traceable citations.
             </p>
-            <div className="flex flex-wrap gap-2 mt-5 max-w-md justify-center">
+            <div className="flex flex-wrap gap-2 mt-5 max-w-sm sm:max-w-md justify-center">
               {[
                 'What are the key points?',
                 'Summarize the main findings',
@@ -151,7 +151,7 @@ export default function QAChatPage() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[600px] rounded-xl px-4 py-3 ${
+              className={`max-w-[85%] sm:max-w-[600px] rounded-xl px-4 py-3 ${
                 msg.role === 'user'
                   ? 'bg-accent text-text-inverse'
                   : 'bg-surface-2 border border-border'
@@ -188,7 +188,7 @@ export default function QAChatPage() {
       </div>
 
       {/* Input */}
-      <div className="flex-shrink-0 border-t border-border p-4">
+      <div className="flex-shrink-0 border-t border-border p-3 sm:p-4">
         <div className="max-w-[720px] mx-auto relative">
           <textarea
             ref={inputRef}

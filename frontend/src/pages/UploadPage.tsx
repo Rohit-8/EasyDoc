@@ -52,8 +52,8 @@ export default function UploadPage() {
   const mime = mimeMap[ext] || 'text/plain';
 
   return (
-    <div className="p-6 max-w-[640px] mx-auto animate-fade-in">
-      <div className="mb-8">
+    <div className="p-4 sm:p-6 max-w-[640px] mx-auto animate-fade-in">
+      <div className="mb-6 sm:mb-8">
         <h1 className="text-xl font-semibold tracking-tight">Upload Document</h1>
         <p className="text-sm text-text-tertiary mt-0.5">
           Drag & drop or click to upload. Supports PDF, DOCX, XLSX, CSV, TXT, MD.
@@ -64,7 +64,7 @@ export default function UploadPage() {
       <div
         {...getRootProps()}
         className={`
-          relative border-2 border-dashed rounded-xl p-12 text-center cursor-pointer
+          relative border-2 border-dashed rounded-xl p-8 sm:p-12 text-center cursor-pointer
           transition-all duration-200
           ${isDragActive
             ? 'border-accent bg-accent-subtle'
@@ -128,9 +128,9 @@ export default function UploadPage() {
       )}
 
       {/* File types */}
-      <div className="mt-8 space-y-3">
+      <div className="mt-6 sm:mt-8 space-y-3">
         <p className="text-2xs font-medium text-text-tertiary uppercase tracking-wider">Supported formats</p>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {[
             { ext: 'PDF', desc: 'Documents' },
             { ext: 'DOCX', desc: 'Word files' },

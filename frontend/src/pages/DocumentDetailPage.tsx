@@ -32,7 +32,7 @@ export default function DocumentDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="p-6 max-w-[960px] mx-auto space-y-6">
+      <div className="p-4 sm:p-6 max-w-[960px] mx-auto space-y-6">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-32 w-full" />
         <Skeleton className="h-48 w-full" />
@@ -46,7 +46,7 @@ export default function DocumentDetailPage() {
   const entities = doc.entities as Record<string, string[]> | null;
 
   return (
-    <div className="p-6 max-w-[960px] mx-auto animate-fade-in">
+    <div className="p-4 sm:p-6 max-w-[960px] mx-auto animate-fade-in">
       {/* Back */}
       <Link to="/" className="btn-ghost text-[13px] -ml-3 mb-4 inline-flex">
         <ArrowLeft className="w-4 h-4" />
@@ -54,13 +54,13 @@ export default function DocumentDetailPage() {
       </Link>
 
       {/* Header */}
-      <div className="card p-5 mb-4">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-4">
+      <div className="card p-4 sm:p-5 mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <FileIcon mimeType={doc.mimeType} size="lg" />
-            <div>
-              <h1 className="text-lg font-semibold tracking-tight">{doc.fileName}</h1>
-              <div className="flex items-center gap-3 mt-1 text-sm text-text-tertiary">
+            <div className="min-w-0">
+              <h1 className="text-base sm:text-lg font-semibold tracking-tight truncate">{doc.fileName}</h1>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-1 text-xs sm:text-sm text-text-tertiary">
                 <span className="flex items-center gap-1">
                   <Clock className="w-3.5 h-3.5" />
                   {new Date(doc.uploadedAt).toLocaleDateString()}
@@ -86,12 +86,13 @@ export default function DocumentDetailPage() {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-start">
             <StatusBadge status={doc.status} />
             {doc.status === 'ready' && (
               <Link to={`/documents/${id}/chat`} className="btn-primary text-[13px]">
                 <MessageSquare className="w-4 h-4" />
-                Ask Questions
+                <span className="hidden sm:inline">Ask Questions</span>
+                <span className="sm:hidden">Ask</span>
               </Link>
             )}
           </div>

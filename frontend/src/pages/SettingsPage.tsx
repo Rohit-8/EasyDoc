@@ -54,8 +54,8 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="p-6 max-w-[720px] mx-auto animate-fade-in">
-      <div className="mb-8">
+    <div className="p-4 sm:p-6 max-w-[720px] mx-auto animate-fade-in">
+      <div className="mb-6 sm:mb-8">
         <h1 className="text-xl font-semibold tracking-tight">Settings</h1>
         <p className="text-sm text-text-tertiary mt-0.5">
           Configure model assignments and view active providers.
@@ -67,7 +67,7 @@ export default function SettingsPage() {
         <h2 className="text-[13px] font-medium text-text-tertiary uppercase tracking-wider mb-4">
           Active Providers
         </h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {['gemini', 'groq', 'nvidia', 'ollama'].map((pid) => {
             const provider = providers.find((p: { id: string }) => p.id === pid);
             const Icon = providerIcons[pid] || Cpu;
