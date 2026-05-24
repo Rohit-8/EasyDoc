@@ -45,7 +45,7 @@ model DocumentChunk {
   documentId  String                         @map("document_id") @db.Uuid
   chunkIndex  Int                            @map("chunk_index")
   content     String
-  embedding   Unsupported("vector(768)")
+  embedding   Unsupported("vector(3072)")
   pageNumber  Int?                           @map("page_number")
   section     String?
   tokenCount  Int?                           @map("token_count")

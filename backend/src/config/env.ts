@@ -23,7 +23,7 @@ const envSchema = z.object({
   MODEL_QA: z.string().optional().default(''),
   EMBEDDING_PROVIDER: z.string().optional().default('gemini'),
   EMBEDDING_MODEL: z.string().optional().default('gemini-embedding-001'),
-  EMBEDDING_DIMENSIONS: z.coerce.number().optional().default(768),
+  EMBEDDING_DIMENSIONS: z.coerce.number().optional().default(3072),
   CLAMAV_ENABLED: z.string().optional().default('false'),
   CLAMAV_HOST: z.string().optional().default('localhost'),
   CLAMAV_PORT: z.coerce.number().optional().default(3310),
