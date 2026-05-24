@@ -19,7 +19,7 @@ export default function Layout() {
             <div className="w-7 h-7 rounded bg-accent/20 flex items-center justify-center">
               <FileText className="w-4 h-4 text-accent" />
             </div>
-            <span className="font-semibold text-[15px] tracking-tight">EasyDoc</span>
+            <span className="font-semibold text-[15px] tracking-tight">CipherDocs</span>
           </div>
         </div>
 

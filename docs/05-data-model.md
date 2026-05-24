@@ -1,4 +1,4 @@
-# EasyDoc — Data Model
+# CipherDocs — Data Model
 
 ## Database: PostgreSQL + pgvector
 

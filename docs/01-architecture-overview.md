@@ -1,4 +1,4 @@
-# EasyDoc — Architecture Overview
+# CipherDocs — Architecture Overview
 
 AI-powered RAG system for document analysis, summarization, and citation-aware retrieval.
 Enterprise-grade with async processing, observability, caching, and graceful fault tolerance.
@@ -209,7 +209,7 @@ User uploads updated version of same file (different hash)
 ## Project Structure
 
 ```
-EasyDoc/
+CipherDocs/
 ├── docs/                           # Architecture & design docs
 ├── backend/
 │   ├── src/

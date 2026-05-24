@@ -1,4 +1,4 @@
-# EasyDoc — API Design
+# CipherDocs — API Design
 
 ## Base URL
 

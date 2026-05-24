@@ -1,4 +1,4 @@
-# EasyDoc — Features
+# CipherDocs — Features
 
 ## Core Features
 

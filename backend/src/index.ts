@@ -29,7 +29,7 @@ async function main() {
   // Start server
   const app = createApp();
   const server = app.listen(env.PORT, () => {
-    logger.info(`EasyDoc API running on port ${env.PORT}`, { mode: env.NODE_ENV });
+    logger.info(`CipherDocs API running on port ${env.PORT}`, { mode: env.NODE_ENV });
   });
 
   // Graceful shutdown

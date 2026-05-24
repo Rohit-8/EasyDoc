@@ -10,6 +10,6 @@ export const logger = winston.createLogger({
       ? winston.format.json()
       : winston.format.combine(winston.format.colorize(), winston.format.simple()),
   ),
-  defaultMeta: { service: 'easydoc' },
+  defaultMeta: { service: 'cipherdocs' },
   transports: [new winston.transports.Console()],
 });

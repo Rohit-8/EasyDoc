@@ -4,7 +4,7 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.3',
     info: {
-      title: 'EasyDoc API',
+      title: 'CipherDocs API',
       version: '1.0.0',
       description: 'AI-powered RAG system for document analysis, summarization, and citation-aware retrieval.',
     },

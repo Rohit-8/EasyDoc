@@ -1,4 +1,4 @@
-# EasyDoc
+# CipherDocs
 
 AI-powered RAG system for document analysis, summarization, and citation-aware retrieval. Built with Express + TypeScript backend, React + Vite frontend, PostgreSQL with pgvector, and multi-provider LLM support.
 
@@ -78,7 +78,7 @@ AI-powered RAG system for document analysis, summarization, and citation-aware r
 ### 1. Clone & Install
 
 ```bash
-git clone <repo-url> && cd EasyDoc
+git clone <repo-url> && cd CipherDocs
 cd backend && npm install
 cd ../frontend && npm install
 ```
@@ -142,7 +142,7 @@ The frontend runs at `http://localhost:5173` and proxies API requests to the bac
 
 ## LLM Providers
 
-EasyDoc auto-detects available providers on startup based on environment variables:
+CipherDocs auto-detects available providers on startup based on environment variables:
 
 | Provider | Env Variable | Example Models |
 |----------|-------------|----------------|

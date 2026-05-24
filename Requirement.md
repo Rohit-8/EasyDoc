@@ -1,4 +1,4 @@
-AI system based on RAG to anlayze document and summarize it. Named as EasyDoc
+AI system based on RAG to anlayze document and summarize it. Named as CipherDocs
 
 Features:
 1. Secure document ingestion pipeline

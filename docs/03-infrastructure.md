@@ -1,4 +1,4 @@
-# EasyDoc — Infrastructure & Tech Stack
+# CipherDocs — Infrastructure & Tech Stack
 
 ## Runtime Requirements
 
@@ -266,7 +266,7 @@ VITE_API_URL=http://localhost:3001/api
 ```bash
 # 1. Clone
 git clone <repo>
-cd EasyDoc
+cd CipherDocs
 
 # 2. Configure
 cp .env.example .env

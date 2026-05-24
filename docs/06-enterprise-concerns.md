@@ -1,6 +1,6 @@
-# EasyDoc — Enterprise Cross-Cutting Concerns
+# CipherDocs — Enterprise Cross-Cutting Concerns
 
-This document details the enterprise patterns that make EasyDoc production-grade.
+This document details the enterprise patterns that make CipherDocs production-grade.
 
 ---
 
@@ -453,7 +453,7 @@ const logger = winston.createLogger({
     winston.format.timestamp(),
     winston.format.json()
   ),
-  defaultMeta: { service: 'easydoc' },
+  defaultMeta: { service: 'cipherdocs' },
   transports: [
     new winston.transports.Console({
       format: process.env.NODE_ENV === 'development'
@@ -478,7 +478,7 @@ const logger = winston.createLogger({
 {
   "timestamp": "2026-05-24T10:30:00.000Z",
   "level": "info",
-  "service": "easydoc",
+  "service": "cipherdocs",
   "correlationId": "abc-123-def",
   "message": "Document processed successfully",
   "documentId": "uuid",
@@ -844,7 +844,7 @@ const swaggerSpec = swaggerJsdoc({
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'EasyDoc API',
+      title: 'CipherDocs API',
       version: '1.0.0',
       description: 'AI-powered document analysis and RAG system',
     },
